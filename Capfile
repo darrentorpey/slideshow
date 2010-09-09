@@ -3,12 +3,14 @@ load 'deploy' if respond_to?(:namespace) # cap2 differentiator
 default_run_options[:pty] = true
 
 # be sure to change these
-set :user, 'username'
-set :domain, 'yourdomain.com'
-set :application, 'yourapp'
+set :user, 'darrent'
+set :git_user, 'darrentorpey'
+set :domain, 'slideshow.darrentorpey.com'
+set :application, 'slideshow'
 
 # the rest should be good
-set :repository,  "#{user}@#{domain}:git/#{application}.git" 
+# set :repository,  "#{user}@#{domain}:git/#{application}.git"
+set :repository,  "git@github.com:#{git_user}/#{application}.git"
 set :deploy_to, "/home/#{user}/#{domain}"
 set :deploy_via, :remote_cache
 set :scm, 'git'
@@ -21,6 +23,6 @@ server domain, :app, :web
 
 namespace :deploy do
   task :restart do
-    run "touch #{current_path}/tmp/restart.txt" 
+    run "touch #{current_path}/tmp/restart.txt"
   end
 end
